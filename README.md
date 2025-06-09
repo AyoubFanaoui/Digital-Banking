@@ -60,10 +60,7 @@ Il permet de gérer les clients, leurs comptes bancaires, et d'assurer la sécur
 - Rôles : `ADMIN`, `USER`
 - Routes sécurisées par `SecurityFilterChain`
 
-📷 **Capture d’écran de la page de login**  
-> _(Insère ici une image de la page login)_
 
-![Login Page](./screenshots/login.png)
 
 ---
 
