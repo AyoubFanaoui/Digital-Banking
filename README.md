@@ -73,7 +73,7 @@ Il permet de gérer les clients, leurs comptes bancaires, et d'assurer la sécur
 ## 🛠️ Lancer le projet
 
 ### Backend
-```bash
+
 cd digital-banking
 
 Frontend
