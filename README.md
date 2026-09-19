@@ -1,93 +1,116 @@
-#  Digital Banking - Full Stack App
+# Digital Banking - Full Stack App
 
-Ce projet est une application web de gestion bancaire développée avec **Spring Boot** pour le backend et **Angular** pour le frontend.  
-Il permet de gérer les clients, leurs comptes bancaires, et d'assurer la sécurité des accès via JWT.
+Digital Banking est une application web de gestion bancaire développée avec **Spring Boot** pour le backend et **Angular** pour le frontend.
 
----
+L'application permet de gérer les clients et leurs comptes bancaires, ainsi que d'effectuer différentes opérations comme les crédits, les débits et les virements. L'accès à l'application est sécurisé avec **Spring Security et JWT**.
 
-## Fonctionnalités principales
+## Objectif du projet
 
-- 🔐 Authentification sécurisée avec JWT
-- 👤 Gestion des clients
-- 💰 Consultation des comptes
-- 💳 Opérations bancaires (débit, crédit, virement)
-- 🔎 Recherche de clients
-- ⚙️ Interface utilisateur réactive (Angular)
+L'objectif de ce projet était de mettre en pratique le développement d'une application Full Stack avec Spring Boot et Angular, en travaillant notamment sur la création d'API REST, la gestion des données avec JPA, la sécurité avec JWT et l'intégration entre le frontend et le backend.
 
----
+## Fonctionnalités
 
-## 🧱 Architecture du projet
+* Authentification avec JWT
+* Gestion des clients
+* Consultation des comptes bancaires
+* Crédit et débit d'un compte
+* Virements entre comptes
+* Recherche de clients
+* Gestion des rôles `ADMIN` et `USER`
+* Protection des routes Angular
+* Gestion des accès côté backend
 
-### 🖥️ Frontend – Angular
+## Architecture du projet
 
-- `customers` : Liste des clients
-- `accounts` : Détails des comptes d’un client
-- `customer-account` : Informations d’un client et de ses comptes
-- `new-customer` : Formulaire d’ajout
-- `login` : Page d’authentification
-- `navbar` : Barre de navigation
-- `not-authorize` : Page d'accès refusé
-- `guards` : Protection des routes
-- `interceptors` : Injection automatique du token JWT
+### Frontend - Angular
 
+Le frontend est organisé en plusieurs composants :
 
+* `customers` : affichage et recherche des clients
+* `accounts` : affichage des comptes d'un client
+* `customer-account` : informations du client et de ses comptes
+* `new-customer` : formulaire d'ajout d'un client
+* `login` : page de connexion
+* `navbar` : navigation de l'application
+* `not-authorize` : page affichée lorsque l'utilisateur n'a pas les droits nécessaires
+* `guards` : protection des routes
+* `interceptors` : ajout du token JWT aux requêtes HTTP
 
-### 🧩 Services utilisés
+Les principaux services Angular sont :
 
-- `auth.service.ts` : Authentification et gestion du token
-- `customer.service.ts` : Communication avec l’API Spring Boot
+* `auth.service.ts` : gestion de l'authentification et du token
+* `customer.service.ts` : communication avec les API du backend
 
----
+### Backend - Spring Boot
 
-### 🔙 Backend – Spring Boot
+Le backend suit une organisation en différentes couches :
 
-- `Entities` : `Customer`, `BankAccount`, `SavingAccount`, `CurrentAccount`
-- `DTOs` : `CustomerDTO`, `AccountDTO`
-- `Repositories` : Interfaces JPA
-- `Mappers` : Conversion Entity <-> DTO (via MapStruct)
-- `Services` : Logique métier
-- `Controllers` : Exposition des APIs REST
-- `Security` : JWT + Spring Security (avec filtres, UserDetailsService, etc.)
+* `Entities` : `Customer`, `BankAccount`, `SavingAccount`, `CurrentAccount`
+* `DTOs` : `CustomerDTO`, `AccountDTO`
+* `Repositories` : accès aux données avec Spring Data JPA
+* `Mappers` : conversion entre les entités et les DTO avec MapStruct
+* `Services` : gestion de la logique métier
+* `Controllers` : exposition des API REST
+* `Security` : configuration de Spring Security et gestion des JWT
 
+## Authentification et sécurité
 
+L'application utilise JWT pour sécuriser les accès.
 
----
+Lorsqu'un utilisateur se connecte avec ses identifiants, le backend vérifie les informations et génère un token JWT. Ce token est ensuite envoyé avec les requêtes suivantes afin de vérifier que l'utilisateur est bien authentifié.
 
-## 🔐 Authentification JWT
+Deux rôles sont utilisés dans l'application :
 
-- `POST /auth/login` → Retourne un JWT si les identifiants sont valides
-- Le token est utilisé dans toutes les requêtes suivantes (header `Authorization`)
-- Rôles : `ADMIN`, `USER`
-- Routes sécurisées par `SecurityFilterChain`
+* `ADMIN`
+* `USER`
 
+Les routes sont protégées côté backend avec Spring Security et côté frontend avec des guards Angular.
 
-
----
-
-## ⚙️ Technologies utilisées
-
-![alt text](./screen/image.png)
-
----
-
-## 🛠️ Lancer le projet
+## Technologies utilisées
 
 ### Backend
 
-cd digital-banking
+* Java
+* Spring Boot
+* Spring Security
+* Spring Data JPA
+* Hibernate
+* JWT
+* MapStruct
+* REST API
 
-Frontend
+### Frontend
+
+* Angular
+* TypeScript
+* HTML
+* CSS
+
+
+## Installation
+
+### Backend
+
+```bash
+cd digital-banking
+```
+
+Lancer ensuite l'application Spring Boot depuis votre IDE ou avec Maven.
+
+### Frontend
+
+```bash
 cd digital-banking-frontend
 npm install
 ng serve
+```
 
-### Arborescence
-![alt text](./screen/image-1.png)
 
-### Capture d'écran finale
-![alt text](./screen/image0.png)
+
+
+### Aperçu
+![alt text](./screen/image09.png)
 ---
-![alt text](./screen/image-10.png)
+![alt text](./screen/image10.png)
 
----
-![alt text](./screen/image-2.png)
+
